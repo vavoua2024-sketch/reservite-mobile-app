@@ -10,6 +10,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
+      injectRegister: false, // on enregistre nous-mêmes dans main.jsx (voir registerSW)
       manifest: {
         name: "Inventaire Immobilisations",
         short_name: "Inventaire",
@@ -25,6 +26,12 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ["**/*.{js,css,html,svg,png,ico}"],
+        // Une nouvelle version prend le contrôle immédiatement (au lieu
+        // d'attendre que tous les onglets soient fermés) — évite qu'un
+        // agent/responsable reste bloqué sur une version périmée en cache.
+        skipWaiting: true,
+        clientsClaim: true,
+        cleanupOutdatedCaches: true,
       },
     }),
   ],

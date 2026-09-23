@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext.jsx";
 
 export default function Login() {
@@ -52,6 +52,9 @@ export default function Login() {
           {loading ? "Connexion..." : "Se connecter"}
         </button>
       </form>
+      <Link to="/signup" className="link-button">
+        Créer un cabinet
+      </Link>
     </div>
   );
 }

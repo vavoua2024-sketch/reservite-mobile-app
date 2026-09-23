@@ -35,6 +35,7 @@ function AppRoutes() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/" element={<Private><Home /></Private>} />
+      <Route path="/scanner" element={<Private><CampaignSelect /></Private>} />
       <Route path="/scan/:campaignId" element={<Private><Scan /></Private>} />
 
       <Route path="/backoffice" element={<Private><CompanyProvider><Dashboard /></CompanyProvider></Private>} />

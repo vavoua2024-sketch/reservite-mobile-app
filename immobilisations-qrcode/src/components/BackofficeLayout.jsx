@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { supabase } from "../lib/supabase.js";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import { useCompany } from "../contexts/CompanyContext.jsx";
+import SpaceSwitcher from "./SpaceSwitcher.jsx";
 
 export default function BackofficeLayout({ title, children }) {
   const { profile, session, signOut } = useAuth();
@@ -67,11 +68,6 @@ export default function BackofficeLayout({ title, children }) {
           <NavLink to="/backoffice/qrcodes" className={navClass}>
             QR codes
           </NavLink>
-          {isPlatformAdmin && (
-            <NavLink to="/admin" className={({ isActive }) => `side-link side-link-admin${isActive ? " active" : ""}`}>
-              Super admin
-            </NavLink>
-          )}
         </nav>
 
         <div className="sidebar-footer">
@@ -86,6 +82,7 @@ export default function BackofficeLayout({ title, children }) {
       </aside>
 
       <main className="main-panel">
+        <SpaceSwitcher current="cabinet" isPlatformAdmin={isPlatformAdmin} />
         <header className="page-header">
           <div>
             <p className="eyebrow">Cabinet</p>

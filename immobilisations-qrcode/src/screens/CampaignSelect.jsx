@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase.js";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import SyncBadge from "../components/SyncBadge.jsx";
+import SpaceSwitcher from "../components/SpaceSwitcher.jsx";
 
 export default function CampaignSelect() {
-  const { profile, signOut } = useAuth();
+  const { profile, session, signOut } = useAuth();
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isPlatformAdmin, setIsPlatformAdmin] = useState(false);
 
   useEffect(() => {
     if (!profile) return;
@@ -24,8 +26,19 @@ export default function CampaignSelect() {
       });
   }, [profile]);
 
+  useEffect(() => {
+    if (!session) return;
+    supabase
+      .from("platform_admins")
+      .select("user_id")
+      .eq("user_id", session.user.id)
+      .maybeSingle()
+      .then(({ data }) => setIsPlatformAdmin(!!data));
+  }, [session]);
+
   return (
     <div className="screen">
+      <SpaceSwitcher current="scan" isPlatformAdmin={isPlatformAdmin} />
       <header className="screen-header">
         <div>
           <h1>Campagnes en cours</h1>

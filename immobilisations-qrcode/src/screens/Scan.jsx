@@ -131,7 +131,7 @@ export default function Scan() {
   return (
     <div className="screen scan-screen">
       <header className="screen-header">
-        <button className="link-button" onClick={() => navigate("/")}>
+        <button className="link-button" onClick={() => navigate("/scanner")}>
           ← Campagnes
         </button>
         <span className="muted">

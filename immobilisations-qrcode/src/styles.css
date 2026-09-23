@@ -111,6 +111,19 @@ button.link-button:hover { text-decoration: underline; background: none; }
   box-shadow: var(--shadow-sm); border: 1px solid var(--border); margin-top: 16px;
 }
 
+/* ---------- space switcher (Cabinet / Scan mobile / Super admin) ---------- */
+.space-switcher {
+  display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;
+}
+.space-pill {
+  padding: 7px 16px; border-radius: 999px; font-size: 0.85rem; font-weight: 700;
+  text-decoration: none; color: var(--muted); background: #f3f4f6;
+  border: 1.5px solid transparent; transition: all 0.15s ease;
+}
+.space-pill:hover { background: #e5e7eb; color: var(--text); }
+.space-pill-active { background: var(--primary); color: white; }
+.space-pill-active:hover { background: var(--primary-dark); color: white; }
+
 /* ---------- generic screen (mobile flows: login-less pages, scan) ---------- */
 
 .screen { max-width: 720px; margin: 0 auto; padding: 20px 16px 40px; min-height: 100vh; }

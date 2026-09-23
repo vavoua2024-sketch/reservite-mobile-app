@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { supabase } from "../lib/supabase.js";
 import { useAuth } from "../contexts/AuthContext.jsx";
+import SpaceSwitcher from "../components/SpaceSwitcher.jsx";
 
 export default function AdminDashboard() {
   const { session, profile } = useAuth();
@@ -36,6 +37,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="screen admin">
+      <SpaceSwitcher current="admin" isPlatformAdmin={true} />
       <header className="page-header">
         <div>
           <p className="eyebrow">Super admin</p>
@@ -43,9 +45,6 @@ export default function AdminDashboard() {
         </div>
         <div className="header-actions">
           <span className="pill">{profile?.full_name}</span>
-          <Link to="/backoffice" className="btn btn-ghost">
-            Retour au backoffice
-          </Link>
         </div>
       </header>
 

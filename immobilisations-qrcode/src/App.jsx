@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext.jsx";
 import { CompanyProvider } from "./contexts/CompanyContext.jsx";
 import Login from "./screens/Login.jsx";
 import Signup from "./screens/Signup.jsx";
+import AdminDashboard from "./screens/AdminDashboard.jsx";
 import CampaignSelect from "./screens/CampaignSelect.jsx";
 import Scan from "./screens/Scan.jsx";
 import Dashboard from "./screens/backoffice/Dashboard.jsx";
@@ -31,6 +32,8 @@ function AppRoutes() {
       <Route path="/backoffice/locations" element={<Private><CompanyProvider><Locations /></CompanyProvider></Private>} />
       <Route path="/backoffice/qrcodes" element={<Private><CompanyProvider><GenerateQr /></CompanyProvider></Private>} />
       <Route path="/backoffice/campaigns/:campaignId/results" element={<Private><CompanyProvider><CampaignResults /></CompanyProvider></Private>} />
+
+      <Route path="/admin" element={<Private><AdminDashboard /></Private>} />
     </Routes>
   );
 }

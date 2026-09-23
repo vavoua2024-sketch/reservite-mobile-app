@@ -14,8 +14,8 @@ export default defineConfig({
         name: "Inventaire Immobilisations",
         short_name: "Inventaire",
         description: "Inventaire physique des immobilisations par QR code",
-        theme_color: "#1C5CE8",
-        background_color: "#F5F7FA",
+        theme_color: "#4F46E5",
+        background_color: "#F7F7FB",
         display: "standalone",
         start_url: "/",
         icons: [

@@ -24,37 +24,43 @@ export default function Login() {
   }
 
   return (
-    <div className="screen screen-center">
-      <h1>Inventaire Immobilisations</h1>
-      <form onSubmit={handleSubmit} className="form">
-        <label>
-          Email
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            autoComplete="username"
-          />
-        </label>
-        <label>
-          Mot de passe
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            autoComplete="current-password"
-          />
-        </label>
-        {error && <p className="error">{error}</p>}
-        <button type="submit" disabled={loading}>
-          {loading ? "Connexion..." : "Se connecter"}
-        </button>
-      </form>
-      <Link to="/signup" className="link-button">
-        Créer un cabinet
-      </Link>
+    <div className="auth-screen">
+      <div className="auth-card">
+        <span className="brand-mark brand-mark-lg">IQ</span>
+        <h1>Content de te revoir</h1>
+        <p className="muted">Connecte-toi pour accéder à ton cabinet.</p>
+        <form onSubmit={handleSubmit} className="form">
+          <label>
+            Email
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              autoComplete="username"
+              placeholder="toi@cabinet.com"
+            />
+          </label>
+          <label>
+            Mot de passe
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              autoComplete="current-password"
+              placeholder="••••••••"
+            />
+          </label>
+          {error && <p className="error">{error}</p>}
+          <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+            {loading ? "Connexion..." : "Se connecter"}
+          </button>
+        </form>
+        <Link to="/signup" className="auth-switch">
+          Pas encore de cabinet ? <strong>Créer un compte</strong>
+        </Link>
+      </div>
     </div>
   );
 }

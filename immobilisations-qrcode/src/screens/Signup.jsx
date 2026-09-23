@@ -32,39 +32,55 @@ export default function Signup() {
   }
 
   return (
-    <div className="screen screen-center">
-      <h1>Créer votre cabinet</h1>
-      <form onSubmit={handleSubmit} className="form">
-        <label>
-          Votre nom
-          <input value={fullName} onChange={(e) => setFullName(e.target.value)} required />
-        </label>
-        <label>
-          Nom du cabinet
-          <input value={cabinetName} onChange={(e) => setCabinetName(e.target.value)} required />
-        </label>
-        <label>
-          Email
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </label>
-        <label>
-          Mot de passe
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            minLength={8}
-            required
-          />
-        </label>
-        {error && <p className="error">{error}</p>}
-        <button type="submit" disabled={loading}>
-          {loading ? "Création..." : "Créer mon compte"}
-        </button>
-      </form>
-      <Link to="/login" className="link-button">
-        J'ai déjà un compte
-      </Link>
+    <div className="auth-screen">
+      <div className="auth-card">
+        <span className="brand-mark brand-mark-lg">IQ</span>
+        <h1>Crée ton cabinet</h1>
+        <p className="muted">Ton compte, ton cabinet et ton profil responsable en un clic.</p>
+        <form onSubmit={handleSubmit} className="form">
+          <label>
+            Votre nom
+            <input value={fullName} onChange={(e) => setFullName(e.target.value)} required placeholder="Aya Koffi" />
+          </label>
+          <label>
+            Nom du cabinet
+            <input
+              value={cabinetName}
+              onChange={(e) => setCabinetName(e.target.value)}
+              required
+              placeholder="Cabinet Koffi & Associés"
+            />
+          </label>
+          <label>
+            Email
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="toi@cabinet.com"
+            />
+          </label>
+          <label>
+            Mot de passe
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              minLength={8}
+              required
+              placeholder="8 caractères minimum"
+            />
+          </label>
+          {error && <p className="error">{error}</p>}
+          <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+            {loading ? "Création..." : "Créer mon compte"}
+          </button>
+        </form>
+        <Link to="/login" className="auth-switch">
+          Déjà un cabinet ? <strong>Se connecter</strong>
+        </Link>
+      </div>
     </div>
   );
 }

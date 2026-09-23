@@ -101,7 +101,7 @@ export default function CampaignResults() {
           <div className="kpi kpi-unknown"><strong>{rows.inconnu.length}</strong><span>Inconnus/Surplus</span></div>
         </div>
 
-        <button onClick={exportCsv}>Exporter en CSV</button>
+        <button className="btn btn-secondary" onClick={exportCsv}>Exporter en CSV</button>
 
         {rows.manquant.length > 0 && (
           <Section title="⚠️ Manquants — nécessite une décision">

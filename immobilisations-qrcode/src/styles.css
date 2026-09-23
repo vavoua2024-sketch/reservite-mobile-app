@@ -263,6 +263,7 @@ button.link-button:hover { text-decoration: underline; background: none; }
 .table tbody tr:last-child td { border-bottom: none; }
 .table tbody tr:hover { background: #fafafb; }
 .cell-strong { font-weight: 700; }
+.row-actions { display: flex; gap: 14px; }
 
 .qr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; margin-top: 16px; }
 .qr-tag {

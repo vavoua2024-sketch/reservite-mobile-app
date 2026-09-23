@@ -32,7 +32,7 @@ export default function GenerateQr() {
         <p className="muted">
           {assets.length} étiquette(s) à imprimer et coller sur les biens correspondants.
         </p>
-        <button onClick={() => window.print()}>Imprimer</button>
+        <button className="btn btn-primary" onClick={() => window.print()}>Imprimer</button>
       </div>
 
       <div className="qr-grid">

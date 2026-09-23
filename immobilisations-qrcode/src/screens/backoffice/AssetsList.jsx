@@ -52,7 +52,7 @@ export default function AssetsList() {
 
   return (
     <BackofficeLayout title="Immobilisations">
-      <button onClick={() => setShowForm((v) => !v)}>
+      <button className="btn btn-primary" onClick={() => setShowForm((v) => !v)}>
         {showForm ? "Annuler" : "+ Ajouter une immobilisation"}
       </button>
 
@@ -101,32 +101,34 @@ export default function AssetsList() {
               ))}
             </select>
           </label>
-          <button type="submit">Enregistrer</button>
+          <button type="submit" className="btn btn-primary">Enregistrer</button>
         </form>
       )}
 
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Désignation</th>
-            <th>N° inventaire</th>
-            <th>Compte SYSCOHADA</th>
-            <th>Localisation</th>
-            <th>Statut</th>
-          </tr>
-        </thead>
-        <tbody>
-          {assets.map((a) => (
-            <tr key={a.id}>
-              <td>{a.designation}</td>
-              <td>{a.asset_number || "—"}</td>
-              <td>{a.categories ? `${a.categories.syscohada_account} — ${a.categories.name}` : "—"}</td>
-              <td>{a.locations ? [a.locations.site_name, a.locations.room].filter(Boolean).join(" · ") : "—"}</td>
-              <td>{a.status}</td>
+      <div className="table-wrap">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Désignation</th>
+              <th>N° inventaire</th>
+              <th>Compte SYSCOHADA</th>
+              <th>Localisation</th>
+              <th>Statut</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {assets.map((a) => (
+              <tr key={a.id}>
+                <td className="cell-strong">{a.designation}</td>
+                <td>{a.asset_number || "—"}</td>
+                <td>{a.categories ? `${a.categories.syscohada_account} — ${a.categories.name}` : "—"}</td>
+                <td>{a.locations ? [a.locations.site_name, a.locations.room].filter(Boolean).join(" · ") : "—"}</td>
+                <td>{a.status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </BackofficeLayout>
   );
 }

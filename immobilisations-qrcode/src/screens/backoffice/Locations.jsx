@@ -60,14 +60,20 @@ export default function Locations() {
             required
           />
         </label>
-        <button type="submit">Ajouter</button>
+        <button type="submit" className="btn btn-primary">Ajouter</button>
       </form>
 
-      <ul className="location-list">
-        {locations.map((l) => (
-          <li key={l.id}>{[l.site_name, l.building, l.room].filter(Boolean).join(" · ")}</li>
-        ))}
-      </ul>
+      <div className="table-wrap">
+        <table className="table">
+          <tbody>
+            {locations.map((l) => (
+              <tr key={l.id}>
+                <td>{[l.site_name, l.building, l.room].filter(Boolean).join(" · ")}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </BackofficeLayout>
   );
 }

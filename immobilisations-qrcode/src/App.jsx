@@ -19,12 +19,22 @@ function Private({ children }) {
   return children;
 }
 
+// Un responsable de cabinet doit atterrir sur le backoffice (c'est lui qui
+// configure les clients, immobilisations, campagnes) — un agent de terrain
+// reste sur l'écran de scan, son usage principal.
+function Home() {
+  const { profile, loading } = useAuth();
+  if (loading || !profile) return <div className="screen screen-center">Chargement...</div>;
+  if (profile.role === "responsable") return <Navigate to="/backoffice" replace />;
+  return <CampaignSelect />;
+}
+
 function AppRoutes() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/" element={<Private><CampaignSelect /></Private>} />
+      <Route path="/" element={<Private><Home /></Private>} />
       <Route path="/scan/:campaignId" element={<Private><Scan /></Private>} />
 
       <Route path="/backoffice" element={<Private><CompanyProvider><Dashboard /></CompanyProvider></Private>} />

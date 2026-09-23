@@ -5,11 +5,13 @@ import { useCompany } from "../../contexts/CompanyContext.jsx";
 import BackofficeLayout from "../../components/BackofficeLayout.jsx";
 
 export default function Dashboard() {
-  const { companyId } = useCompany();
+  const { companyId, companies } = useCompany();
   const [assetCount, setAssetCount] = useState(null);
   const [campaigns, setCampaigns] = useState([]);
   const [newTitle, setNewTitle] = useState("");
   const [creating, setCreating] = useState(false);
+
+  const companyName = companies.find((c) => c.id === companyId)?.name;
 
   useEffect(() => {
     if (!companyId) return;
@@ -63,13 +65,13 @@ export default function Dashboard() {
 
       <section className="card">
         <h2>Nouvelle campagne d'inventaire</h2>
-        <form onSubmit={createCampaign} className="form form-inline">
+        <form onSubmit={createCampaign} className="inline-form">
           <input
             placeholder="Ex : Inventaire annuel 2026"
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
           />
-          <button type="submit" disabled={creating}>
+          <button type="submit" className="btn btn-primary" disabled={creating}>
             Créer et démarrer
           </button>
         </form>
@@ -77,28 +79,41 @@ export default function Dashboard() {
 
       <section>
         <h2>Campagnes</h2>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Titre</th>
-              <th>Début</th>
-              <th>Statut</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {campaigns.map((c) => (
-              <tr key={c.id}>
-                <td>{c.title}</td>
-                <td>{c.start_date}</td>
-                <td>{c.status}</td>
-                <td>
-                  <Link to={`/backoffice/campaigns/${c.id}/results`}>Voir les résultats</Link>
-                </td>
+        <div className="table-wrap">
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Titre</th>
+                <th>Début</th>
+                <th>Statut</th>
+                <th></th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {campaigns.map((c) => (
+                <tr key={c.id}>
+                  <td className="cell-strong">{c.title}</td>
+                  <td>{c.start_date}</td>
+                  <td>{c.status}</td>
+                  <td className="row-actions">
+                    {c.status === "IN_PROGRESS" && (
+                      <Link
+                        to={`/scan/${c.id}`}
+                        state={{ companyId, companyName }}
+                        className="link-button"
+                      >
+                        Scanner
+                      </Link>
+                    )}
+                    <Link to={`/backoffice/campaigns/${c.id}/results`} className="link-button">
+                      Résultats
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
     </BackofficeLayout>
   );
